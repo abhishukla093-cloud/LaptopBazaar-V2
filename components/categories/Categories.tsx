@@ -31,4 +31,4 @@ export default function Categories() {
       </Container>
     </section>
   );
-}
+}   
