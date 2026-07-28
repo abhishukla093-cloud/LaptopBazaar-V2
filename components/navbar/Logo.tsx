@@ -1,16 +1,24 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo() {
   return (
     <Link
       href="/"
-      className="group flex items-center gap-2.5 select-none"
+      className="group flex items-center gap-3 select-none"
     >
-      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 shadow-[0_0_30px_rgba(249,115,22,0.28)] transition-all duration-300 group-hover:scale-105">
-        <span className="text-lg font-bold text-white">L</span>
-      </div>
+      <Image
+        src="/logo/logo.png"
+        alt="LaptopBazaar Logo"
+        width={52}
+        height={52}
+        priority
+        className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110"
+      />
 
-      <h2 className="text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-orange-400">
+      <h2 className="text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-orange-400">
         LaptopBazaar
       </h2>
     </Link>
