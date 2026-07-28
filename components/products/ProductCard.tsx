@@ -12,6 +12,10 @@ interface ProductCardProps {
 export default function ProductCard({
   product,
 }: ProductCardProps) {
+  const formatPrice = (price: number) => {
+    return `₹${new Intl.NumberFormat("en-IN").format(price)}`;
+  };
+
   return (
     <motion.div
       whileHover={{ y: -8 }}
@@ -86,6 +90,7 @@ export default function ProductCard({
             size={16}
             className="fill-orange-400 text-orange-400"
           />
+
           <span className="text-sm text-white">
             {product.rating}
           </span>
@@ -98,11 +103,11 @@ export default function ProductCard({
         {/* Price */}
         <div className="mt-5 flex items-center gap-3">
           <span className="text-2xl font-bold text-white">
-            ${product.price}
+            {formatPrice(product.price)}
           </span>
 
           <span className="text-zinc-500 line-through">
-            ${product.originalPrice}
+            {formatPrice(product.originalPrice)}
           </span>
         </div>
 

@@ -1,48 +1,45 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-
-const links = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Laptops",
-    href: "/",
-  },
-  {
-    title: "Gaming",
-    href: "/",
-  },
-  {
-    title: "Brands",
-    href: "/",
-  },
-  {
-    title: "Support",
-    href: "/",
-  },
-];
+import { navLinks } from "./data";
 
 export default function NavLinks() {
-  return (
-    <nav className="hidden items-center gap-10 lg:flex">
-      {links.map((link) => (
-        <Link
-          key={link.title}
-          href={link.href}
-          className="group relative text-sm font-medium text-zinc-300 transition-colors duration-300 hover:text-white"
-        >
-          {link.title}
+  const pathname = usePathname();
 
-          <motion.span
-            layoutId="navbar-line"
-            className="absolute -bottom-2 left-0 h-[2px] w-0 rounded-full bg-orange-500 transition-all duration-300 group-hover:w-full"
-          />
-        </Link>
-      ))}
+  return (
+    <nav className="hidden lg:flex items-center gap-8">
+      {navLinks.map((item) => {
+        const active = pathname === item.href;
+
+        return (
+          <Link
+            key={item.title}
+            href={item.href}
+            className="relative group"
+          >
+            <span
+              className={`transition-colors duration-300 text-[15px] font-medium ${
+                active
+                  ? "text-orange-400"
+                  : "text-zinc-300 group-hover:text-white"
+              }`}
+            >
+              {item.title}
+            </span>
+
+            {active ? (
+              <motion.div
+                layoutId="navbar-active"
+                className="absolute -bottom-2 left-0 h-[2px] w-full rounded-full bg-orange-500"
+              />
+            ) : (
+              <span className="absolute -bottom-2 left-0 h-[2px] w-0 rounded-full bg-orange-500 transition-all duration-300 group-hover:w-full" />
+            )}
+          </Link>
+        );
+      })}
     </nav>
   );
 }

@@ -2,25 +2,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Logo() {
   return (
     <Link
       href="/"
-      className="group flex items-center gap-3 select-none"
+      className="flex items-center gap-3 group"
     >
-      <Image
-        src="/logo/logo.png"
-        alt="LaptopBazaar Logo"
-        width={52}
-        height={52}
-        priority
-        className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110"
-      />
+      <motion.div
+        whileHover={{
+          rotate: -5,
+          scale: 1.08,
+        }}
+        transition={{
+          duration: 0.25,
+        }}
+      >
+        <Image
+          src="/logo/logo.png"
+          alt="LaptopBazaar"
+          width={56}
+          height={56}
+          priority
+          className="object-contain drop-shadow-[0_0_18px_rgba(249,115,22,.45)]"
+        />
+      </motion.div>
 
-      <h2 className="text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-orange-400">
-        LaptopBazaar
-      </h2>
+      <div className="hidden md:flex flex-col leading-none">
+        <span className="text-xl font-bold tracking-tight text-white transition-all group-hover:text-orange-400">
+          LaptopBazaar
+        </span>
+
+        <span className="text-xs tracking-[0.35em] uppercase text-zinc-400">
+          Premium Store
+        </span>
+      </div>
     </Link>
   );
 }
